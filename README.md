@@ -1,7 +1,7 @@
 # Mole fetch
-Is Library for make background http request using ServiceWorker and Fetch API
+Is a library to make background HTTP requests using ServiceWorker and the Fetch API
 
-Mole fetch is help web application make any HTTP request still running incase users are close a browser accidentally or network is disconnect. Mole fetch is using ServiceWokrer and SyncManager
+Mole fetch makes sure your applications sends HTTP request that are still running but can't be completed due to various reasons (e.g. flaky internet connection, browser crash). It requires support for ServiceWorker and SyncManager to function properly. 
 
 ##Installation
 
@@ -32,12 +32,12 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
     })
 }
 
-//Implement onResponse for recieve response from ServiceWorker when site is online
+//Implement onResponse for receive response from ServiceWorker when site is online
 moleFetch.onResponse('facebook').then((value) => {
     document.getElementById("result").innerHTML = value;
 })
 
-//Implement onResponse for recieve response from Cache when site is offline
+//Implement onResponse for receive response from Cache when site is offline
 moleFetch.getCacheResponse('facebook',false).then((value) => {
     document.getElementById("result").innerHTML = value;
 })
@@ -66,19 +66,19 @@ self.addEventListener('sync', (event) => {
 
 ####sendRequest (taskName, url, data, method)
 
-This method will be send request to ServiceWorker and request via FetchAPI
+This method will send requests to ServiceWorker and request via FetchAPI
 
 ####moleFetch.onResponse(taskName)
 
-This method will wating result from FetchAPI matched by name return as Promise
+This method will wait for result from the FetchAPI matched by name returned as Promise
 
 ####moleFetch.getCacheResponse(taskName)
 
-This method will get result from Cache that created when browser offline and matched by name as Promise
+This method will get the result from the Cache that was created when browser is offline and matched by name as Promise
 
 ####moleFetch.getTaskStatus(taskName)
 
-This method will get return status by taskName
+This method will get the return status by taskName
 
 ##Compatibility
 Google Chrome 49+
